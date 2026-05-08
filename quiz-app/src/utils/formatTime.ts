@@ -1,6 +1,6 @@
 export function formatTime(seconds: number) {
-  const minutes = Math.floor(seconds / 60);
-  const secs = seconds % 60;
+  const min = Math.floor(seconds / 60);
+  const sec = seconds % 60;
 
-  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+  return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 }

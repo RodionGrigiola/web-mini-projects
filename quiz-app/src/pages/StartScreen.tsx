@@ -2,6 +2,7 @@ import { QUIZ_ACTION } from "../constants/quizAction";
 import type { QuizAction } from "../types/quiz";
 import { Button } from "../components/Button";
 import { ScreenWrapper } from "../components/ScreenWrapper";
+import { FaPlay } from "react-icons/fa";
 
 type Props = {
   dispatch: React.Dispatch<QuizAction>;
@@ -27,6 +28,7 @@ export function StartScreen({ dispatch }: Props) {
         variant="primary"
         className="w-full"
         onClick={() => dispatch({ type: QUIZ_ACTION.START_QUIZ })}>
+        <FaPlay />
         Start Quiz
       </Button>
     </ScreenWrapper>
