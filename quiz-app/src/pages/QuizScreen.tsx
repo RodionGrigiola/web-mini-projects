@@ -5,6 +5,8 @@ import type { QuizAction, QuizState } from "../types/quiz";
 import { Button } from "../components/Button";
 import { ProgressBar } from "../components/ProgressBar";
 import { formatTime } from "../utils/formatTime";
+import { useEffect } from "react";
+import { playSound, sounds } from "../utils/sounds";
 
 type Props = {
   state: QuizState;
@@ -13,6 +15,19 @@ type Props = {
 
 export function QuizScreen({ state, dispatch }: Props) {
   const currentQuestion = questions[state.currentQuestionIndex];
+
+  useEffect(() => {
+    if (!state.selectedAnswerId) return;
+
+    const current = questions[state.currentQuestionIndex];
+    const isCorrect = state.selectedAnswerId === current.correctAnswerId;
+
+    if (isCorrect) {
+      playSound(sounds.correct);
+    } else {
+      playSound(sounds.wrong);
+    }
+  }, [state.selectedAnswerId, state.currentQuestionIndex]);
 
   return (
     <div className="w-full max-w-xl mx-auto flex flex-col gap-8 min-h-[400px] justify-between">
