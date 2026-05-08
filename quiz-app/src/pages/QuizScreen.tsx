@@ -81,7 +81,7 @@ export function QuizScreen({ state, dispatch }: Props) {
           className={`text-sm ${
             state.timeLeft <= 10
               ? "text-red-500 animate-pulse"
-              : "text-slate-300"
+              : "text-amber-100"
           }`}>
           Time: {formatTime(state.timeLeft)}
         </p>

@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { QUIZ_ACTION } from "../constants/quizAction";
 import type { QuizAction, QuizState } from "../types/quiz";
 import { Button } from "../components/Button";
 import { playSound, sounds } from "../utils/sounds";
 import { QUIZ_STATUS } from "../constants/quizStatus";
-import { useEffect } from "react";
+import { ScreenWrapper } from "../components/ScreenWrapper";
 
 type Props = {
   state: QuizState;
@@ -23,18 +24,39 @@ export function ResultScreen({ state, dispatch }: Props) {
     }
   }, [state.status, state.highScore, state.score]);
 
-  return (
-    <div className="flex flex-col items-center gap-6">
-      <h2 className="text-3xl font-bold">Finished!</h2>
+  const isBest = state.score >= state.highScore;
 
-      <p>Your score: {state.score}</p>
-      <p>High score: {state.highScore}</p>
+  return (
+    <ScreenWrapper>
+      <div className="text-center space-y-2">
+        <h1 className="text-4xl font-bold">Results</h1>
+        <p className="text-slate-400">Quiz completed</p>
+      </div>
+
+      <div className="w-full flex flex-col gap-3 text-center">
+        <div className="bg-slate-700/50 rounded-lg p-4">
+          <p className="text-sm text-slate-400">Your Score</p>
+          <p className="text-2xl font-bold">{state.score}</p>
+        </div>
+
+        <div className="bg-slate-700/50 rounded-lg p-4">
+          <p className="text-sm text-slate-400">Best Score</p>
+          <p className="text-2xl font-bold">{state.highScore}</p>
+        </div>
+
+        {isBest && (
+          <p className="text-green-400 text-sm animate-pulse">
+            🎉 New Best Score!
+          </p>
+        )}
+      </div>
 
       <Button
         variant="secondary"
+        className="w-full"
         onClick={() => dispatch({ type: QUIZ_ACTION.RESTART })}>
-        Restart
+        Play Again
       </Button>
-    </div>
+    </ScreenWrapper>
   );
 }
