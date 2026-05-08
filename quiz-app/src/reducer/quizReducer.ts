@@ -2,6 +2,7 @@ import { QUIZ_ACTION } from "../constants/quizAction";
 import { QUIZ_STATUS } from "../constants/quizStatus";
 import { questions } from "../data/questions";
 import type { QuizAction, QuizState } from "../types/quiz";
+import { setHighScore } from "../utils/storage";
 
 export function quizReducer(state: QuizState, action: QuizAction): QuizState {
   switch (action.type) {
@@ -68,12 +69,16 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
         selectedAnswerId: null,
       };
 
-    case QUIZ_ACTION.FINISH:
+    case QUIZ_ACTION.FINISH: {
+      const newHigh = Math.max(state.highScore, state.score);
+      setHighScore(newHigh);
+
       return {
         ...state,
         status: QUIZ_STATUS.FINISHED,
-        highScore: Math.max(state.highScore, state.score),
+        highScore: newHigh,
       };
+    }
 
     default:
       return state;
