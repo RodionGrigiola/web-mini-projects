@@ -7,4 +7,5 @@ export const initialState: QuizState = {
   score: 0,
   highScore: 0,
   selectedAnswerId: null,
+  timeLeft: 300,
 };

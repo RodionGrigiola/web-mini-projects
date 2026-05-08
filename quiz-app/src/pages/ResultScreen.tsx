@@ -1,5 +1,6 @@
 import { QUIZ_ACTION } from "../constants/quizAction";
 import type { QuizAction, QuizState } from "../types/quiz";
+import { Button } from "../components/Button";
 
 type Props = {
   state: QuizState;
@@ -14,11 +15,11 @@ export function ResultScreen({ state, dispatch }: Props) {
       <p>Your score: {state.score}</p>
       <p>High score: {state.highScore}</p>
 
-      <button
-        className="rounded bg-blue-500 px-6 py-3"
+      <Button
+        variant="secondary"
         onClick={() => dispatch({ type: QUIZ_ACTION.RESTART })}>
         Restart
-      </button>
+      </Button>
     </div>
   );
 }

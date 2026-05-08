@@ -9,6 +9,7 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return {
         ...state,
         status: QUIZ_STATUS.PLAYING,
+        timeLeft: 300,
       };
 
     case QUIZ_ACTION.SELECT_ANSWER: {
@@ -40,6 +41,24 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
         selectedAnswerId: null,
       };
     }
+
+    case QUIZ_ACTION.TICK: {
+      const newTime = state.timeLeft - 1;
+
+      if (newTime <= 0) {
+        return {
+          ...state,
+          timeLeft: 0,
+          status: QUIZ_STATUS.FINISHED,
+        };
+      }
+
+      return {
+        ...state,
+        timeLeft: newTime,
+      };
+    }
+
     case QUIZ_ACTION.RESTART:
       return {
         ...state,
@@ -47,6 +66,13 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
         currentQuestionIndex: 0,
         score: 0,
         selectedAnswerId: null,
+      };
+
+    case QUIZ_ACTION.FINISH:
+      return {
+        ...state,
+        status: QUIZ_STATUS.FINISHED,
+        highScore: Math.max(state.highScore, state.score),
       };
 
     default:

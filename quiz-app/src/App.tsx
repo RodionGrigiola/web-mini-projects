@@ -5,9 +5,15 @@ import { QUIZ_STATUS } from "./constants/quizStatus";
 import { StartScreen } from "./pages/StartScreen";
 import { QuizScreen } from "./pages/QuizScreen";
 import { ResultScreen } from "./pages/ResultScreen";
+import { useQuizTimer } from "./hooks/useQuickTimer";
 
 function App() {
   const [state, dispatch] = useReducer(quizReducer, initialState);
+  useQuizTimer({
+    status: state.status,
+    timeLeft: state.timeLeft,
+    dispatch,
+  });
 
   return (
     <div className="min-h-screen bg-slate-900 text-white p-10">

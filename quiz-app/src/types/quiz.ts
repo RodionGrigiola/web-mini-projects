@@ -9,10 +9,13 @@ export type QuizState = {
   score: number;
   highScore: number;
   selectedAnswerId: number | null;
+  timeLeft: number;
 };
 
 export type QuizAction =
   | { type: typeof QUIZ_ACTION.START_QUIZ }
   | { type: typeof QUIZ_ACTION.SELECT_ANSWER; payload: number }
   | { type: typeof QUIZ_ACTION.NEXT_QUESTION }
-  | { type: typeof QUIZ_ACTION.RESTART };
+  | { type: typeof QUIZ_ACTION.RESTART }
+  | { type: typeof QUIZ_ACTION.TICK }
+  | { type: typeof QUIZ_ACTION.FINISH };
