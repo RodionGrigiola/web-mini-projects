@@ -1,4 +1,7 @@
-export type QuizStatus = "start" | "playing" | "finished";
+import type { QUIZ_ACTION } from "../constants/quizAction";
+import { QUIZ_STATUS } from "../constants/quizStatus";
+
+export type QuizStatus = (typeof QUIZ_STATUS)[keyof typeof QUIZ_STATUS];
 
 export type QuizState = {
   status: QuizStatus;
@@ -9,7 +12,7 @@ export type QuizState = {
 };
 
 export type QuizAction =
-  | { type: "START" }
-  | { type: "SELECT_ANSWER"; payload: number }
-  | { type: "NEXT_QUESTION" }
-  | { type: "RESTART" };
+  | { type: typeof QUIZ_ACTION.START_QUIZ }
+  | { type: typeof QUIZ_ACTION.SELECT_ANSWER; payload: number }
+  | { type: typeof QUIZ_ACTION.NEXT_QUESTION }
+  | { type: typeof QUIZ_ACTION.RESTART };

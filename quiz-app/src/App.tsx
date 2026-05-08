@@ -2,6 +2,8 @@ import { useReducer } from "react";
 import { questions } from "./data/questions";
 import { initialState } from "./reducer/initialState";
 import { quizReducer } from "./reducer/quizReducer";
+import { QUIZ_ACTION } from "./constants/quizAction";
+import { QUIZ_STATUS } from "./constants/quizStatus";
 
 function App() {
   const [state, dispatch] = useReducer(quizReducer, initialState);
@@ -15,15 +17,15 @@ function App() {
       <p>Status: {state.status}</p>
       <p>Score: {state.score}</p>
 
-      {state.status === "start" && (
+      {state.status === QUIZ_STATUS.START && (
         <button
           className="mt-5 rounded-lg bg-blue-500 px-6 py-3"
-          onClick={() => dispatch({ type: "START" })}>
+          onClick={() => dispatch({ type: QUIZ_ACTION.START_QUIZ })}>
           Start
         </button>
       )}
 
-      {state.status === "playing" && (
+      {state.status === QUIZ_STATUS.PLAYING && (
         <div className="mt-6 space-y-4">
           <h2 className="text-2xl">{currentQuestion.question}</h2>
 
@@ -33,7 +35,7 @@ function App() {
               className="block rounded bg-slate-700 px-4 py-3"
               onClick={() =>
                 dispatch({
-                  type: "SELECT_ANSWER",
+                  type: QUIZ_ACTION.SELECT_ANSWER,
                   payload: answer.id,
                 })
               }>
@@ -43,18 +45,28 @@ function App() {
 
           <button
             className="rounded bg-green-600 px-6 py-3"
-            onClick={() => dispatch({ type: "NEXT_QUESTION" })}>
+            onClick={() => dispatch({ type: QUIZ_ACTION.NEXT_QUESTION })}>
             Next
           </button>
         </div>
       )}
 
-      {state.status === "finished" && (
+      {state.status === QUIZ_STATUS.FINISHED && (
         <div className="mt-6">
           <h2 className="text-3xl font-bold">Finished!</h2>
 
           <p>Your score: {state.score}</p>
           <p>High score: {state.highScore}</p>
+
+          <button
+            className="mt-4 rounded bg-blue-500 px-6 py-3"
+            onClick={() =>
+              dispatch({
+                type: QUIZ_ACTION.RESTART,
+              })
+            }>
+            Restart
+          </button>
         </div>
       )}
     </div>
