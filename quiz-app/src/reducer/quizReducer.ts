@@ -28,7 +28,11 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
 
     case QUIZ_ACTION.NEXT_QUESTION: {
       const lastQuestion = state.currentQuestionIndex === questions.length - 1;
+
       if (lastQuestion) {
+        const newHigh = Math.max(state.highScore, state.score);
+        setHighScore(newHigh);
+
         return {
           ...state,
           status: QUIZ_STATUS.FINISHED,
@@ -68,17 +72,6 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
         score: 0,
         selectedAnswerId: null,
       };
-
-    case QUIZ_ACTION.FINISH: {
-      const newHigh = Math.max(state.highScore, state.score);
-      setHighScore(newHigh);
-
-      return {
-        ...state,
-        status: QUIZ_STATUS.FINISHED,
-        highScore: newHigh,
-      };
-    }
 
     default:
       return state;

@@ -2,6 +2,8 @@ import { QUIZ_STATUS } from "../constants/quizStatus";
 import type { QuizState } from "../types/quiz";
 import { getHighScore } from "../utils/storage";
 
+console.log(getHighScore());
+
 export const initialState: QuizState = {
   status: QUIZ_STATUS.START,
   currentQuestionIndex: 0,
