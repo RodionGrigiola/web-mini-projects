@@ -42,22 +42,25 @@ export function QuizScreen({ state, dispatch }: Props) {
 
       <div className="flex flex-col gap-3">
         {currentQuestion.answers.map((answer) => {
-          const isSelected = answer.id === state.selectedAnswerId;
+          const isSelected = state.selectedAnswerId === answer.id;
+          const isCorrect = answer.id === currentQuestion.correctAnswerId;
+
+          let buttonState: "default" | "correct" | "wrong" = "default";
+
+          if (state.selectedAnswerId !== null) {
+            if (isCorrect) {
+              buttonState = "correct";
+            } else if (isSelected && !isCorrect) {
+              buttonState = "wrong";
+            }
+          }
 
           return (
             <AnswerButton
               key={answer.id}
               text={answer.text}
+              state={buttonState}
               disabled={state.selectedAnswerId !== null}
-              state={
-                !state.selectedAnswerId
-                  ? "default"
-                  : answer.id === currentQuestion.correctAnswerId
-                    ? "correct"
-                    : isSelected
-                      ? "wrong"
-                      : "default"
-              }
               onClick={() =>
                 dispatch({
                   type: QUIZ_ACTION.SELECT_ANSWER,
@@ -70,7 +73,8 @@ export function QuizScreen({ state, dispatch }: Props) {
       </div>
 
       <Button
-        className="rounded bg-green-600 px-6 py-3"
+        className="rounded px-6 py-3"
+        disabled={!state.selectedAnswerId}
         onClick={() =>
           dispatch({
             type: QUIZ_ACTION.NEXT_QUESTION,

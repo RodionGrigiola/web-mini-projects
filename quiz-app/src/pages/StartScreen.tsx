@@ -28,8 +28,10 @@ export function StartScreen({ dispatch }: Props) {
         variant="primary"
         className="w-full"
         onClick={() => dispatch({ type: QUIZ_ACTION.START_QUIZ })}>
-        <FaPlay />
-        Start Quiz
+        <div className="flex gap-2 justify-center items-center">
+          <FaPlay />
+          Start Quiz
+        </div>
       </Button>
     </ScreenWrapper>
   );

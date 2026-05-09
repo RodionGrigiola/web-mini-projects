@@ -9,4 +9,5 @@ export const initialState: QuizState = {
   highScore: getHighScore(),
   selectedAnswerId: null,
   timeLeft: 300,
+  isRevealing: false,
 };
