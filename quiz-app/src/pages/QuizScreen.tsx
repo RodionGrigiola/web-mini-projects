@@ -36,7 +36,7 @@ export function QuizScreen({ state, dispatch }: Props) {
         current={state.currentQuestionIndex + 1}
         total={questions.length}>
         <FaChartBar />
-        Progress{" "}
+        Question {state.currentQuestionIndex + 1} / 5
       </ProgressBar>
       <h2 className="text-2xl font-bold">{currentQuestion.question}</h2>
 
