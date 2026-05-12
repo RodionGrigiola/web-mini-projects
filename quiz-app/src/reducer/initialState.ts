@@ -12,5 +12,4 @@ export const initialState: QuizState = {
   highScore: getHighScore(),
   selectedAnswerId: null,
   timeLeft: 30 * questions.length,
-  isRevealing: false,
 };
