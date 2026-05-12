@@ -6,7 +6,6 @@ import { QUIZ_STATUS } from "../constants/quizStatus";
 export function useQuizTimer({
   status,
   dispatch,
-  timeLeft,
 }: {
   status: string;
   dispatch: React.Dispatch<QuizAction>;
@@ -20,5 +19,5 @@ export function useQuizTimer({
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [status, timeLeft, dispatch]);
+  }, [status, dispatch]);
 }

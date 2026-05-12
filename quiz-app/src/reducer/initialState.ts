@@ -1,4 +1,5 @@
 import { QUIZ_STATUS } from "../constants/quizStatus";
+import { questions } from "../data/questions";
 import type { QuizState } from "../types/quiz";
 import { getHighScore } from "../utils/storage";
 
@@ -10,6 +11,6 @@ export const initialState: QuizState = {
   score: 0,
   highScore: getHighScore(),
   selectedAnswerId: null,
-  timeLeft: 300,
+  timeLeft: 30 * questions.length,
   isRevealing: false,
 };

@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "secondary" | "danger" | "ghost";
+  variant?: "primary" | "secondary" | "danger";
 };
 
 export function Button({
@@ -16,7 +16,6 @@ export function Button({
     primary: "bg-blue-500 hover:bg-blue-600 text-white",
     secondary: "bg-slate-700 hover:bg-slate-600 text-white",
     danger: "bg-red-500 hover:bg-red-600 text-white",
-    ghost: "bg-transparent hover:bg-slate-700 text-white",
   };
 
   const disabledStyles = "opacity-50 cursor-not-allowed pointer-events-none";

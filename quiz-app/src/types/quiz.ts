@@ -10,7 +10,6 @@ export type QuizState = {
   highScore: number;
   selectedAnswerId: number | null;
   timeLeft: number;
-  isRevealing: boolean;
 };
 
 export type QuizAction =

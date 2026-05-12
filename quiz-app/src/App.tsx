@@ -5,7 +5,7 @@ import { QUIZ_STATUS } from "./constants/quizStatus";
 import { StartScreen } from "./pages/StartScreen";
 import { QuizScreen } from "./pages/QuizScreen";
 import { ResultScreen } from "./pages/ResultScreen";
-import { useQuizTimer } from "./hooks/useQuickTimer";
+import { useQuizTimer } from "./hooks/useQuizTimer";
 
 function App() {
   const [state, dispatch] = useReducer(quizReducer, initialState);
