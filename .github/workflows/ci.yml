@@ -54,7 +54,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -f quiz-app/Dockerfile.prod \
-            -t $IMAGE_NAME:latest quiz-app
+            -t $IMAGE_NAME:latest .
 
       - name: Push Docker image
         run: |
