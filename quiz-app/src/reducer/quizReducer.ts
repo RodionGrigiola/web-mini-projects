@@ -10,6 +10,8 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return {
         ...state,
         status: QUIZ_STATUS.PLAYING,
+        timeLeft:
+          action.payload.questionsCountNumber * action.payload.timePerQuestion,
       };
 
     case QUIZ_ACTION.SELECT_ANSWER: {

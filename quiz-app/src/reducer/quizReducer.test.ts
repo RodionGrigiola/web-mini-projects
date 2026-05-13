@@ -2,6 +2,7 @@ import { quizReducer } from "./quizReducer";
 import { QUIZ_ACTION } from "../constants/quizAction";
 import { QUIZ_STATUS } from "../constants/quizStatus";
 import { initialState } from "./initialState";
+import { QUESTIONS_COUNT, TIME_PER_QUESTION } from "../constants/constants";
 
 describe("Quiz Reducer", () => {
   it("should start quiz", () => {
@@ -9,10 +10,14 @@ describe("Quiz Reducer", () => {
 
     const newState = quizReducer(state, {
       type: QUIZ_ACTION.START_QUIZ,
+      payload: {
+        questionsCountNumber: QUESTIONS_COUNT,
+        timePerQuestion: TIME_PER_QUESTION,
+      },
     });
 
-    expect(newState.timeLeft).toEqual(150); // questions.length * 30 - needs fix
-    expect(newState.status).toEqual(QUIZ_STATUS.PLAYING);
+    expect(newState.timeLeft).toBe(150);
+    expect(newState.status).toBe(QUIZ_STATUS.PLAYING);
   });
 
   it("should increase score on correct answer", () => {

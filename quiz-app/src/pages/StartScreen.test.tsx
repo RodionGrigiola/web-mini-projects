@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { StartScreen } from "./StartScreen";
 import { QUIZ_ACTION } from "../constants/quizAction";
+import { QUESTIONS_COUNT, TIME_PER_QUESTION } from "../constants/constants";
 
 describe("StartScreen", () => {
   it("should render start button", () => {
@@ -23,6 +24,10 @@ describe("StartScreen", () => {
 
     expect(dispatch).toHaveBeenCalledWith({
       type: QUIZ_ACTION.START_QUIZ,
+      payload: {
+        questionsCountNumber: QUESTIONS_COUNT,
+        timePerQuestion: TIME_PER_QUESTION,
+      },
     });
   });
 });
