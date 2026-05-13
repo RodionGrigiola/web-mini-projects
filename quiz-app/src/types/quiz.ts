@@ -13,7 +13,13 @@ export type QuizState = {
 };
 
 export type QuizAction =
-  | { type: typeof QUIZ_ACTION.START_QUIZ }
+  | {
+      type: typeof QUIZ_ACTION.START_QUIZ;
+      payload: {
+        questionsCountNumber: number;
+        timePerQuestion: number;
+      };
+    }
   | { type: typeof QUIZ_ACTION.SELECT_ANSWER; payload: number }
   | { type: typeof QUIZ_ACTION.NEXT_QUESTION }
   | { type: typeof QUIZ_ACTION.RESTART }

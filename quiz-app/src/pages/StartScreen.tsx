@@ -3,6 +3,7 @@ import type { QuizAction } from "../types/quiz";
 import { Button } from "../components/Button";
 import { ScreenWrapper } from "../components/ScreenWrapper";
 import { FaPlay } from "react-icons/fa";
+import { questions } from "../data/questions";
 
 type Props = {
   dispatch: React.Dispatch<QuizAction>;
@@ -27,7 +28,15 @@ export function StartScreen({ dispatch }: Props) {
       <Button
         variant="primary"
         className="w-full"
-        onClick={() => dispatch({ type: QUIZ_ACTION.START_QUIZ })}>
+        onClick={() =>
+          dispatch({
+            type: QUIZ_ACTION.START_QUIZ,
+            payload: {
+              questionsCountNumber: questions.length,
+              timePerQuestion: 30,
+            },
+          })
+        }>
         <div className="flex gap-2 justify-center items-center">
           <FaPlay />
           Start Quiz
