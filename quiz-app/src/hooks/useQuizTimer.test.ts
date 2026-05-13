@@ -21,7 +21,6 @@ describe("useQuizTimer", () => {
       useQuizTimer({
         status: QUIZ_STATUS.PLAYING,
         dispatch,
-        timeLeft: 30,
       }),
     );
 
@@ -41,7 +40,6 @@ describe("useQuizTimer", () => {
       useQuizTimer({
         status: QUIZ_STATUS.FINISHED,
         dispatch,
-        timeLeft: 30,
       }),
     );
 
@@ -58,7 +56,6 @@ describe("useQuizTimer", () => {
       useQuizTimer({
         status: QUIZ_STATUS.PLAYING,
         dispatch,
-        timeLeft: 30,
       }),
     );
 

@@ -11,7 +11,6 @@ function App() {
   const [state, dispatch] = useReducer(quizReducer, initialState);
   useQuizTimer({
     status: state.status,
-    timeLeft: state.timeLeft,
     dispatch,
   });
 

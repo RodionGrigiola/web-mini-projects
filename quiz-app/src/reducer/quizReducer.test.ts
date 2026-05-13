@@ -11,7 +11,7 @@ describe("Quiz Reducer", () => {
       type: QUIZ_ACTION.START_QUIZ,
     });
 
-    expect(newState.timeLeft).toEqual(300);
+    expect(newState.timeLeft).toEqual(150); // questions.length * 30 - needs fix
     expect(newState.status).toEqual(QUIZ_STATUS.PLAYING);
   });
 

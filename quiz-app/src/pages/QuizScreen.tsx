@@ -1,4 +1,3 @@
-import { AnswerButton } from "../components/AnswerButton";
 import { QUIZ_ACTION } from "../constants/quizAction";
 import { questions } from "../data/questions";
 import type { QuizAction, QuizState } from "../types/quiz";
@@ -8,6 +7,7 @@ import { useEffect } from "react";
 import { playSound, sounds } from "../utils/sounds";
 import { FaChartBar } from "react-icons/fa";
 import { Timer } from "../components/Timer";
+import { AnswersList } from "../components/AnswerList";
 
 type Props = {
   state: QuizState;
@@ -40,37 +40,7 @@ export function QuizScreen({ state, dispatch }: Props) {
       </ProgressBar>
       <h2 className="text-2xl font-bold">{currentQuestion.question}</h2>
 
-      <div className="flex flex-col gap-3">
-        {currentQuestion.answers.map((answer) => {
-          const isSelected = state.selectedAnswerId === answer.id;
-          const isCorrect = answer.id === currentQuestion.correctAnswerId;
-
-          let buttonState: "default" | "correct" | "wrong" = "default";
-
-          if (state.selectedAnswerId !== null) {
-            if (isCorrect) {
-              buttonState = "correct";
-            } else if (isSelected && !isCorrect) {
-              buttonState = "wrong";
-            }
-          }
-
-          return (
-            <AnswerButton
-              key={answer.id}
-              text={answer.text}
-              state={buttonState}
-              disabled={state.selectedAnswerId !== null}
-              onClick={() =>
-                dispatch({
-                  type: QUIZ_ACTION.SELECT_ANSWER,
-                  payload: answer.id,
-                })
-              }
-            />
-          );
-        })}
-      </div>
+      <AnswersList state={state} dispatch={dispatch} />
 
       <Button
         className="rounded px-6 py-3"

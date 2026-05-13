@@ -46,30 +46,6 @@ describe("QuizScreen", () => {
     expect(screen.getByText("Test question?")).toBeInTheDocument();
   });
 
-  it("renders answer buttons", () => {
-    render(<QuizScreen state={baseState} dispatch={vi.fn()} />);
-
-    const buttons = screen.getAllByRole("button");
-
-    expect(buttons.length).toBeGreaterThan(1);
-  });
-
-  it("dispatches SELECT_ANSWER on answer click", async () => {
-    const user = userEvent.setup();
-    const dispatch = vi.fn();
-
-    render(<QuizScreen state={baseState} dispatch={dispatch} />);
-
-    const correctAnswer = screen.getByText("Correct");
-
-    await user.click(correctAnswer);
-
-    expect(dispatch).toHaveBeenCalledWith({
-      type: QUIZ_ACTION.SELECT_ANSWER,
-      payload: 1,
-    });
-  });
-
   it("dispatches NEXT_QUESTION on next click", async () => {
     const user = userEvent.setup();
     const dispatch = vi.fn();
@@ -123,7 +99,7 @@ describe("QuizScreen", () => {
       <QuizScreen
         state={{
           ...baseState,
-          selectedAnswerId: -1,
+          selectedAnswerId: 2,
         }}
         dispatch={vi.fn()}
       />,

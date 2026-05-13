@@ -9,7 +9,6 @@ export function useQuizTimer({
 }: {
   status: string;
   dispatch: React.Dispatch<QuizAction>;
-  timeLeft: number;
 }) {
   useEffect(() => {
     if (status !== QUIZ_STATUS.PLAYING) return;
